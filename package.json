@@ -1,0 +1,22 @@
+{
+  "name": "js_basics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "BankAccount.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajmohanv21/JS_Basics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajmohanv21/JS_Basics/issues"
+  },
+  "homepage": "https://github.com/rajmohanv21/JS_Basics#readme",
+  "dependencies": {
+    "@laufire/utils": "^3.0.0-0"
+  }
+}

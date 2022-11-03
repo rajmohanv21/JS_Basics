@@ -1,6 +1,3 @@
-import { map } from "@laufire/utils/collection.js";
-
-
 const data = {
   cost: 10,
   name: "buildHouse",
@@ -26,15 +23,24 @@ const data = {
   ],
 };
 
-const sum = (a, c) => a + c;
+const sum = (a, c) => a + c.totalCost;
 
-const calculateCost = ({cost , tasks = []}) => tasks
-  .map(calculateCost)
-  .reduce(sum, cost);
+const getTotalCost = ({ tasks: subTasks = [], totalCost }) =>
+subTasks.reduce(sum, totalCost);
+
+const calculateCost = ({ cost, tasks: subTasks = [] }) => {
+  const taskWithTotalCost = {
+    cost,
+    tasks: subTasks.map(calculateCost),
+    totalCost: cost,
+  };
+  taskWithTotalCost.totalCost = getTotalCost(taskWithTotalCost);
+  return taskWithTotalCost;
+};
 
 const main = () => {
   const task = data;
-  console.log(calculateCost(task));
+  console.log(JSON.stringify(calculateCost(task)));
 };
 
 main();

@@ -1,3 +1,6 @@
+import { map } from "@laufire/utils/collection.js";
+
+
 const data = {
   cost: 10,
   name: "buildHouse",
@@ -23,30 +26,15 @@ const data = {
   ],
 };
 
-const taskCalculation = (data) => {
-  const result = ((data.tasks) &&
-    recursiveData(data)) || { cost: data.cost };
-  return result;
-};
+const sum = (a, c) => a + c;
 
-const recursiveData = (dataObj) => {
-  let sumOfCost = 0;
-  let extractedArray = [];
-
-  dataObj.tasks.map((item) => {
-    let extractedObject = taskCalculation(item);
-    extractedArray.push(extractedObject);
-    sumOfCost += extractedObject.cost || 0;
-  });
-
-  return {
-    cost: dataObj.cost + sumOfCost,
-    tasks: extractedArray,
-  };
-};
+const calculateCost = ({cost , tasks = []}) => tasks
+  .map(calculateCost)
+  .reduce(sum, cost);
 
 const main = () => {
-  console.log(JSON.stringify(taskCalculation(data)));
+  const task = data;
+  console.log(calculateCost(task));
 };
 
 main();
